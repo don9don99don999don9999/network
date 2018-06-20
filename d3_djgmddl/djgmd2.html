@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> djgmd </title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="style.css"type="text/css">
+
+</head>
+<body>
+    <form>
+	<script >
+    	var path1 =[{'x':0,'y':150}, {'x':0,'y':65}, {'x':120,'y':65}, {'x':120,'y':150}]
+
+    //.attr('path','M46,32 L46,30 C46,16 26,16 26,30 L26,32')
+    	var path2 =[{'x':46,'y':32},{'x':46,'y':30},{'x':46,'y':16},{'x':26,'y':16},{'x':26,'y':30},{'x':26,'y':32}]
+
+    //ears.attr('path',"M74,32 L74,30 C74,16 94,16 94,30 L94,32") 
+    	var path3 =[{'x':74,'y':32},{'x':74,'y':30},{'x':74,'y':16},{'x':94,'y':16},{'x':94,'y':30},{'x':94,'y':32}]
+    //"M60,66 C58.5,61 49,63 49,69/ C49,75 58,77 60,71 M60,66 C61.5,61 71,63 71,69 C71,75 62,77 60,71"	
+    	var path4 =[{'x':60,'y':66},{'x':58.5,'y':61},{'x':49,'y':63},{'x':49,'y':69},{'x':49,'y':75},{'x':58,'y':77},{'x':60,'y':71},{'x':60,'y':66},{'x':61.5,'y':61},{'x':71,'y':63},{'x':71,'y':69},{'x':71,'y':75},{'x':62,'y':77},{'x':60,'y':71}]
+    	//var path41=[{'x':60,'y':66},{'x':58.5,'y':61},{'x':49,'y':63},{'x':49,'y':69}],var path411=[{'x':49,'y':69},{'x':49,'y':75},{'x':58,'y':77},{'x':60,'y':71}],var path42=[{'x':60,'y':66},{'x':61.5,'y':61},{'x':71,'y':63},{'x':71,'y':69}],var path422=[{'x':71,'y':69},{'x':71,'y':75},{'x':62,'y':77},{'x':60,'y':71}]
+    //'path',"M60,66 C58.5,61 49,63 49,69 C49,75 58,77 60,71 ,M60,66 C61.5,61 71,63 71,69 C71,75 62,77 60,71"
+    // 49,63 49,69 C49,75 58,77 60,71 ,M60,66 C61.5,61 71,63 71,69 C71,75 62,77 60,71"
+     	var path5 =[{'x':60,'y':66},{'x':58.5,'y':61},{'x':49,'y':63},{'x':49,'y':69},{'x':49,'y':75},{'x':58,'y':77},{'x':60,'y':71},{'x':60,'y':66},{'x':61.5,'y':61},{'x':71,'y':63},{'x':71,'y':69},{'x':71,'y':75},{'x':62,'y':77},{'x':60,'y':71}]
+     	//var path51=[{'x':60,'y':66},{'x':58.5,'y':61},{'x':49,'y':63},{'x':49,'y':69}],var path511=[{'x':49,'y':69},{'x':49,'y':75},{'x':58,'y':77},{'x':60,'y':71}],var path52=[{'x':60,'y':66},{'x':61.5,'y':61},{'x':71,'y':63},{'x':71,'y':69}],var path522=[{'x':71,'y':69},{'x':71,'y':75},{'x':62,'y':77},{'x':60,'y':71}]
+    //"M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105"	
+    	var path6 =[{'x':40,'y':105},{'x':10,'y':140},{'x':110,'y':140},{'x':80,'y':105},{'x':80,'y':105},{'x':70,'y':111},{'x':60,'y':105},{'x':50,'y':111},{'x':40,'y':105}]
+		
+		var linef1 = d3.svg.line()
+						.x(function(d){return d.x;})
+						.y(function(d){return d.y})
+						.interpolate('bundle')
+						//monotone,linear,cardinal-open,cardinal-closed,bundle,basis,step-after
+		var linef2 = d3.svg.line()
+						.x(function(d){return d.x;})
+						.y(function(d){return d.y})
+						.interpolate('basis')  
+		var linef222 = d3.svg.line()
+					.x(function(d){return d.x;})
+					.y(function(d){return d.y})
+					.interpolate('basis-closed')  				
+		var linef3 = d3.svg.line()
+						.x(function(d){return d.x;})
+						.y(function(d){return d.y})
+						.interpolate('bundle')  	
+		var linef4 = d3.svg.line()
+						.x(function(d){return d.x;})
+						.y(function(d){return d.y})
+						.interpolate('linear')  							
+						
+		var svg = d3.select('form').append('svg')
+					
+					.attr('viewBox','0 0 120 120')
+					
+		var svgryan = svg.attr('id',"ryan")
+		var ryan = svgryan.append('path')
+						.attr('d',linef1(path1))
+						.attr('fill','#e0a243')
+						.attr('stroke',"#000")
+						.attr('stroke-width',2.5)
+			
+		var ears = svgryan.append('g')
+					.attr('class',"ears")
+        var ears1= ears.append('path')
+        				.attr('d',linef2(path2))
+        				.attr('fill','#e0a243')
+						.attr('stroke','#000')
+						.attr('stroke-width',2.5)
+						.attr('transform',"rotate(-10,38,24)")
+						
+		var ears2= ears.append('path')
+						.attr('d',linef2(path3))
+						.attr('fill','#e0a243')
+						.attr('stroke','#000')
+						.attr('stroke-width',2.5)
+						.attr('transform',"rotate(10,82,24)")
+		svgryan.append('circle')
+							.attr('cx',60)
+							.attr('cy',60)
+							.attr('r',40)
+							.attr('fill','#e0a243')
+							.attr('stroke','#000')
+							.attr('stroke-width',2.5)
+						//<circle cx="60" cy="60" r="40" fill="#e0a243" stroke="#000" stroke-width="2.5" />				
+						
+		var eyes = svgryan.append('g')
+					.attr('class',"eyes")
+					eyes.append('line')
+						.attr('x1',37)
+						.attr('x2',50)
+						.attr('y1',46)
+						.attr('y2',46)
+						.attr('stroke','#000')
+						.attr('stroke-width',3)
+						.attr('stroke-linecap','round')
+					eyes.append('circle')
+						.attr('cx',44)
+						.attr('cy',55)
+						.attr('r',3)
+						.attr('fill','#000')
+					eyes.append('line')
+						.attr('x1',70)
+						.attr('x2',83)
+						.attr('y1',46)
+						.attr('y2',46)
+						.attr('stroke','#000')
+						.attr('stroke-width',3)
+						.attr('stroke-linecap','round')
+					eyes.append('circle')
+						.attr('cx',76)
+						.attr('cy',55)
+						.attr('r',3)
+						.attr('fill','#000')
+
+		var muzzle = svgryan.append('g')
+					.attr('class',"muzzle")
+		var muzzle111 = muzzle.append('path').attr('d',linef2(path4)).attr('fill','#fff')	
+		var muzzle211 = muzzle.append('path').attr('d',linef2(path5)).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',1).attr('stroke-linejoin','round')
+			muzzle.append('polygon')
+				.attr('points','59,63.5,60,63.4,61,63.5,60,65')
+				 .style("fill", "black")
+   				.style("stroke", "black")
+   				.style("stroke-Width", "5px")
+   				.attr('stroke-linejoin','round')
+
+		//var muzzle1 = muzzle.append('path')
+							//.attr('d',linef2(path4))
+						//	.attr('fill','#fff')
+		//var muzzle2 = muzzle.append('path')
+			//				.attr('d',linef2(path5))
+		//					.attr('fill','#fff')
+				//			.attr('stroke','#000')
+				//			.attr('stroke-width',1)
+				//			.attr('stroke-linejoin','round')
+
+		//var muzzle111 = muzzle.append('path').attr('d',linef1(path41)).attr('fill','#fff')
+		//var muzzle112= muzzle.append('path').attr('d',linef1(path42)).attr('fill','#fff')	
+		//var muzzle121 = muzzle.append('path').attr('d',linef1(path411)).attr('fill','#fff')
+		//var muzzle122 = muzzle.append('path').attr('d',linef1(path422)).attr('fill','#fff')								
+	
+		//var muzzle211 = muzzle.append('path').attr('d',linef1(path51)).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',1).attr('stroke-linejoin','round')
+		//var muzzle212 = muzzle.append('path').attr('d',linef1(path52)).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',1).attr('stroke-linejoin','round')
+		//var muzzle221 = muzzle.append('path').attr('d',linef1(path511)).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',1).attr('stroke-linejoin','round')
+		//var muzzle222 = muzzle.append('path').attr('d',linef1(path522)).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',1).attr('stroke-linejoin','round')					
+		
+		
+		//var poly = [{'x':40,'y':105},{'x':10,'y':140},{'x':110,'y':140},{'x':80,'y':105},{'x':80,'y':105},{'x':70,'y':111},{'x':60,'y':105},{'x':50,'y':111},{'x':40,'y':105}]
+		//var X = d3.max(poly, function(d) { return d.x; });
+		//var Y = d3.max(poly, function(d) { return d.y; });
+		//var x = d3.scale.linear().domain([0,X]).range([0, 120]);
+		//var y = d3.scale.linear().domain([0,Y]).range([0, 120])
+										
+										
+					//					var muzzle3 = muzzle.selectAll('polygon')
+										//					.data([poly])
+							//								.enter().append('polygon')
+							//								.attr('points',function(d){return d.map(function(d){return [x(d.x),y(d.y)].join(',');}).join(" ");})
+							//								.attr('fill','#000')
+							//								.attr('stroke','#000')
+								//							.attr('stroke-width',5)
+								//							.attr('stroke-linejoin','round')
+	
+
+
+				
+		var ryan = svgryan.append('path')
+						.attr('d',linef4(path6))
+						.attr('fill','#fff')
+						 
+				 
+						
+	</script>
+	 <input type="text" placeholder="email@domain.com">
+     <input type="password" placeholder="Password">
+	 </form>
+	 <script src="script.js"></script>
+</body>
+</html>
